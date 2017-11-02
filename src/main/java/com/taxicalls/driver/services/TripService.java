@@ -5,7 +5,9 @@
  */
 package com.taxicalls.driver.services;
 
+import com.taxicalls.driver.model.Driver;
 import com.taxicalls.driver.model.Trip;
+import com.taxicalls.protocol.Response;
 import com.taxicalls.utils.ServiceRegistry;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -27,11 +29,19 @@ public class TripService {
     public TripService() {
     }
 
-    public void acceptTrip(Trip trip) {
-        ClientBuilder.newClient()
+    public Response acceptTrip(Trip trip) {
+        return ClientBuilder.newClient()
                 .target(serviceRegistry.discoverServiceURI(getClass().getSimpleName()))
                 .path("trips")
                 .request(MediaType.APPLICATION_JSON)
-                .post(Entity.entity(trip, MediaType.APPLICATION_JSON));
+                .post(Entity.entity(trip, MediaType.APPLICATION_JSON), Response.class);
+    }
+
+    public Response createDriver(Driver driver) {
+        return ClientBuilder.newClient()
+                .target(serviceRegistry.discoverServiceURI(getClass().getSimpleName()))
+                .path("drivers")
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.entity(driver, MediaType.APPLICATION_JSON), Response.class);
     }
 }

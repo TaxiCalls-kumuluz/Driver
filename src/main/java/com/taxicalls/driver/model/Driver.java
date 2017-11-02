@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
@@ -21,10 +23,12 @@ import javax.persistence.NamedQuery;
 public class Driver implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String email;
+    private String password;
     private Long atualLatitude;
-
     private Long atualLongitude;
 
     @Enumerated(EnumType.STRING)
@@ -36,6 +40,26 @@ public class Driver implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Long getAtualLatitude() {
+        return atualLatitude;
+    }
+
+    public Long getAtualLongitude() {
+        return atualLongitude;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     public Coordinate getAtualCoordinate() {

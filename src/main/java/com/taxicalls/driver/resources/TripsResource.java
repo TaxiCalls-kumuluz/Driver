@@ -5,6 +5,7 @@ import com.taxicalls.driver.services.BillingService;
 import com.taxicalls.driver.services.NotificationService;
 import com.taxicalls.driver.services.PassengerService;
 import com.taxicalls.driver.services.TripService;
+import com.taxicalls.protocol.Response;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,7 +16,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 @Path("/trips")
 @Produces(MediaType.APPLICATION_JSON)
@@ -44,6 +44,6 @@ public class TripsResource {
         passengerService.acceptTrip(trip);
         billingService.acceptTrip(trip);
         tripService.acceptTrip(trip);
-        return Response.ok().build();
+        return Response.successful();
     }
 }

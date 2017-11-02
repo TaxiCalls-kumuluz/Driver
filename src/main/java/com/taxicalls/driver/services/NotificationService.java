@@ -6,6 +6,7 @@
 package com.taxicalls.driver.services;
 
 import com.taxicalls.driver.model.Trip;
+import com.taxicalls.protocol.Response;
 import com.taxicalls.utils.ServiceRegistry;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -27,12 +28,11 @@ public class NotificationService {
     public NotificationService() {
     }
 
-    public void acceptTrip(Trip trip) {
-        ClientBuilder.newClient()
+    public Response acceptTrip(Trip trip) {
+        return ClientBuilder.newClient()
                 .target(serviceRegistry.discoverServiceURI(getClass().getSimpleName()))
                 .path("notifications")
                 .request(MediaType.APPLICATION_JSON)
-                .post(Entity.entity(trip, MediaType.APPLICATION_JSON));
+                .post(Entity.entity(trip, MediaType.APPLICATION_JSON), Response.class);
     }
-
 }
