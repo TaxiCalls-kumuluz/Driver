@@ -6,6 +6,7 @@
 package com.taxicalls.driver.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -46,24 +47,56 @@ public class Driver implements Serializable {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Long getAtualLatitude() {
         return atualLatitude;
     }
 
+    public void setAtualLatitude(Long atualLatitude) {
+        this.atualLatitude = atualLatitude;
+    }
+
     public Long getAtualLongitude() {
         return atualLongitude;
+    }
+
+    public void setAtualLongitude(Long atualLongitude) {
+        this.atualLongitude = atualLongitude;
     }
 
     public Status getStatus() {
         return status;
     }
 
-    public Coordinate getAtualCoordinate() {
-        return new Coordinate(atualLongitude, atualLatitude);
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Driver)) {
+            return false;
+        }
+        Driver other = (Driver) obj;
+        return getId().equals(other.getId());
     }
 
 }

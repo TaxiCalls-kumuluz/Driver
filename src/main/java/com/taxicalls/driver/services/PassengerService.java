@@ -31,7 +31,7 @@ public class PassengerService {
     public Response acceptTrip(Trip trip) {
         return ClientBuilder.newClient()
                 .target(serviceRegistry.discoverServiceURI(getClass().getSimpleName()))
-                .path("passengers")
+                .path("trips")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(trip, MediaType.APPLICATION_JSON), Response.class);
     }
