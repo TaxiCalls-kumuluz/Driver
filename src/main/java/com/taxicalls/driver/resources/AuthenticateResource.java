@@ -42,6 +42,12 @@ public class AuthenticateResource {
     public Response authenticateDriver(Driver driver) {
         Collection<Driver> drivers = em.createNamedQuery("Driver.findAll", Driver.class).getResultList();
         for (Driver stored : drivers) {
+            if (stored.getEmail() == null) {
+                continue;
+            }
+            if (stored.getPassword() == null) {
+                continue;
+            }
             if (stored.getEmail().equals(driver.getEmail()) && stored.getPassword().equals(driver.getPassword())) {
                 return Response.successful(stored);
             }

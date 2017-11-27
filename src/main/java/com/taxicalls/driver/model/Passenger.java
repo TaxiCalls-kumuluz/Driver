@@ -45,4 +45,7 @@ public class Passenger implements Serializable {
         return password;
     }
 
+    public void setCreditCard(String creditCard) {
+    }
+
 }

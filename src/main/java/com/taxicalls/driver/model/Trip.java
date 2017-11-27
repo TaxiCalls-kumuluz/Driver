@@ -15,10 +15,12 @@ import java.util.Set;
 public class Trip implements Serializable {
 
     private Long id;
-    private Driver driver;
     private Address addressFrom;
     private Address addressTo;
+    private Driver driver;
+    private Passenger author;
     private Set<Passenger> passengers;
+    private Progress progress;
 
     protected Trip() {
     }
@@ -31,36 +33,36 @@ public class Trip implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Driver getDriver() {
-        return driver;
-    }
-
     public Address getAddressFrom() {
         return addressFrom;
-    }
-
-    public void setAddressFrom(Address addressFrom) {
-        this.addressFrom = addressFrom;
     }
 
     public Address getAddressTo() {
         return addressTo;
     }
 
-    public void setAddressTo(Address addressTo) {
-        this.addressTo = addressTo;
+    public Progress getProgress() {
+        return progress;
+    }
+
+    public void setProgress(Progress progress) {
+        this.progress = progress;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+
+    public Passenger getAuthor() {
+        return author;
     }
 
     public Set<Passenger> getPassengers() {
         return passengers;
-    }
-
-    public void setPassengers(Set<Passenger> passengers) {
-        this.passengers = passengers;
     }
 
 }
